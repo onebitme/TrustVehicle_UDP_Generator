@@ -1,6 +1,10 @@
 package com.example.trustvehicleudpgenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setOnClickListeners();
+        initOtherObjects();
 
         mainActivityViewModel.init();
         mainActivityViewModel.setLocalIp(textViewLocalIP);
@@ -51,7 +56,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void setOnClickListeners() {
         //Gas Listeners
+
+        button = findViewById(R.id.button);
+        button2 = findViewById(R.id.button2);
+
         button.setOnClickListener(this);
         button2.setOnClickListener(this);
+    }
+
+
+    public void initOtherObjects() {
+        mainActivityViewModel = ViewModelProviders.of(this).get(MainActivityViewModel.class);
+        udpHelper = new UDPHelper(this);
     }
 }

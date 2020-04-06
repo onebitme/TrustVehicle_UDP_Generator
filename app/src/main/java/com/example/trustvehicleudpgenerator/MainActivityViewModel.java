@@ -81,7 +81,7 @@ public class MainActivityViewModel extends AndroidViewModel {
 
     public void setLocalIp(TextView textView) {
         if (repository.getReceiveAddress() != null) {
-            textView.setText(repository.getReceiveAddress());
+            //textView.setText(repository.getReceiveAddress());
         } else {
             textView.setText("Local IP N/A");
         }

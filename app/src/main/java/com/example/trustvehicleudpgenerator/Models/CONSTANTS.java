@@ -4,14 +4,15 @@ public class CONSTANTS {
 
 
     //UDP Values
-    public static int receivePort =43442;
+    public static int receivePort = 54620;
     //public static int sendPort = 43445;
     //public static String sendAddress="192.168.140.99";
-    //TODO: Macbook Pro - Packetsender Test
-    public static int sendPort = 54620;
-    public static String sendAddress="192.168.1.23";
+    //public static int sendPort =58946;
+    //public static String sendAddress="192.168.1.34"; //MacBook Ethernet
+    public static int sendPort = 43442;
+    public static String sendAddress="192.168.1.40";
     public static int incomingMessageSize=856;
-    public static int outgoingMessageSize=856;
+    public static int outgoingMessageSize=214;
     public static int startOfPathValues=14;
 
     //State Evaluation

@@ -10,8 +10,8 @@ public class CONSTANTS {
     //TODO: Macbook Pro - Packetsender Test
     public static int sendPort = 54620;
     public static String sendAddress="192.168.1.23";
-    public static int incomingMessageSize=48;
-    public static int outgoingMessageSize=5;
+    public static int incomingMessageSize=856;
+    public static int outgoingMessageSize=856;
     public static int startOfPathValues=14;
 
     //State Evaluation

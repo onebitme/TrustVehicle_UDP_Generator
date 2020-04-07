@@ -10,18 +10,22 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.trustvehicleudpgenerator.Helpers.UDPHelper;
+import com.example.trustvehicleudpgenerator.Models.CONSTANTS;
 import com.example.trustvehicleudpgenerator.Repositories.Repository;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     UDPHelper udpHelper;
     Button button, button2;
+    EditText overrideReasons;
     Repository repository = Repository.getInstance();
     MainActivityViewModel mainActivityViewModel;
     TextView textViewLocalIP;
+
 
     @Override
     protected void onStart() {
@@ -35,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setOnClickListeners();
         initOtherObjects();
 
+
+
         mainActivityViewModel.init();
         mainActivityViewModel.setLocalIp(textViewLocalIP);
         mainActivityViewModel.startUDP(udpHelper);
@@ -45,17 +51,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
     public void onClick(View v) {
-        if (v == button) { //Gas Enable Button
-            mainActivityViewModel.changeOutGoingMessage(0, 1);
+        if (v == button) { //Sensor OK
+            System.out.println("On Click Passed");
+            mainActivityViewModel.changeOutGoingMessage(85,20,15);
+            //0dan 1 array güncelleyecek position xdeki
             button.setBackgroundColor(Color.GREEN);
         }
-        else if (v == button2) { //Gas Enable Button
-            mainActivityViewModel.changeOutGoingMessage(0, 0);
+        else if (v == button2) { //Sensor NOK
+            mainActivityViewModel.changeOutGoingMessage(0,0,0);
+            button.setBackgroundColor(Color.GREEN);
         }
+
     }
 
     public void setOnClickListeners() {
-        //Gas Listeners
 
         button = findViewById(R.id.button);
         button2 = findViewById(R.id.button2);

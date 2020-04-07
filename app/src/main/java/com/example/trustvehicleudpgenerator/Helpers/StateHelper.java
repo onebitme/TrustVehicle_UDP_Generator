@@ -15,7 +15,7 @@ public class StateHelper {
         //Decide On Which State We Are On
         long[] messageArray = repository.getIncomingLongMessage();
         //Check For Vehicle Speee
-        if (messageArray[12] > CONSTANTS.vehicleSpeedLimit) {
+        if (messageArray[12] >100) {
             repository.postUpdateCurrentState(eState.VEHICLE_OVERSPEED);
         } else
             //Check For Override Reasons

@@ -50,6 +50,7 @@ public class UDPHelper extends Thread {
 
                 if (outgoingMessage != null) {
                     previousOutgoingMessage = Repository.getInstance().getOutgoingMessage();
+                    Log.d(LOG_TAG,"Outgoing message is huoop: "+Arrays.toString(repository.getOutgoingMessage()));
                     sendData();
                 } else {
                     Log.w(LOG_TAG, "Outgoing Message has not yet been set!");

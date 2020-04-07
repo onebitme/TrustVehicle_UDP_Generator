@@ -66,9 +66,30 @@ public class MessageDecodeHelper {
         ByteBuffer byteBuffer = ByteBuffer.allocate(messageToBeSent.length * 4);
         IntBuffer intBuffer = byteBuffer.asIntBuffer();
         intBuffer.put(messageToBeSent);
+        System.out.println("Esozen: outgoingmessage to byte");
 
         return byteBuffer.array();
     }
 
+    //TODO: TEST HERE
+    ByteBuffer _intShifter = ByteBuffer.allocate(Integer.SIZE / Byte.SIZE)
+            .order(ByteOrder.LITTLE_ENDIAN);
+
+    public byte[] intToByte(int value) {
+        _intShifter.clear();
+        _intShifter.putInt(value);
+        return _intShifter.array();
+    }
+
+    public byte[] convertAsMABX2(int messageTobBeSent){
+        byte[] messageSentByte = intToByte(messageTobBeSent);
+        System.out.println("ConvertMabx2 Passed");
+        return messageSentByte;
+    }
+
+
 
 }
+
+
+

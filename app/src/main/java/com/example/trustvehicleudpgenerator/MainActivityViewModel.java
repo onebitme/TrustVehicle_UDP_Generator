@@ -94,21 +94,23 @@ public class MainActivityViewModel extends AndroidViewModel {
         }
     }
 
-    public void changeOutGoingMessage(int x, int y , int z) {
-        //TODO: Message Decode helper'ın yeni instance'ı yaratılınca adresi değişti
-        //TODO: Bunu başka türlü nasıl yapabilirsin öğren.
+    public MessageDecodeHelper resMessageDecoder(){
         MessageDecodeHelper mp = new MessageDecodeHelper();
-        byte[] dummy =  mp.convertAsMABX2(x);
-        byte[] dummy2 = messageDecodeHelper.convertAsMABX2(y);
-        byte[] dummy3 = messageDecodeHelper.convertAsMABX2(z);
-        Log.d(LOG_TAG,"Byte array to be sent is: "+ Arrays.toString(dummy));
-        repository.getOutgoingMessage()[0] = dummy[0];
-        repository.getOutgoingMessage()[4] = dummy2[0];
-        repository.getOutgoingMessage()[8] = dummy3[0];
+        return mp;
+    }
 
+    public void changeOutGoingMessage(int positionInMessageList, int valueToSet) {
+        //TODO: Test
+        MessageDecodeHelper mp = new MessageDecodeHelper();
+        byte[] valuesToWrite = mp.convertAsMABX2(valueToSet);
+        int indexOutgoing = positionInMessageList*4;
+        int i=0;
+        for (int j= indexOutgoing; j <indexOutgoing+4; j++ ){
+            repository.getOutgoingMessage()[j] = valuesToWrite[i];
+            i++;
+        }
+        resMessageDecoder();
 
-
-        System.out.println("changeOutGoingMessagePassed");
     }
 
 

@@ -1,9 +1,6 @@
 package com.example.trustvehicleudpgenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.graphics.Color;
@@ -14,13 +11,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.trustvehicleudpgenerator.Helpers.UDPHelper;
-import com.example.trustvehicleudpgenerator.Models.CONSTANTS;
 import com.example.trustvehicleudpgenerator.Repositories.Repository;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     UDPHelper udpHelper;
-    Button button, button2;
+    Button sensorOkBtn, sensorNOKBtn, algoSetBtn, algoResBtn,
+            ORSetBtn,ORResBtn,GearD,GearN,GearR;
     EditText overrideReasons;
     Repository repository = Repository.getInstance();
     MainActivityViewModel mainActivityViewModel;
@@ -51,26 +48,50 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
     public void onClick(View v) {
-        if (v == button) { //Sensor OK
+        if (v == sensorOkBtn) { //Sensor OK
             System.out.println("On Click Passed");
-            mainActivityViewModel.changeOutGoingMessage(85,20,15);
+            mainActivityViewModel.changeOutGoingMessage(9,2815);
             //0dan 1 array güncelleyecek position xdeki
-            button.setBackgroundColor(Color.GREEN);
+            sensorOkBtn.setBackgroundColor(Color.GREEN);
         }
-        else if (v == button2) { //Sensor NOK
-            mainActivityViewModel.changeOutGoingMessage(0,0,0);
-            button.setBackgroundColor(Color.GREEN);
+        else if (v == sensorNOKBtn) { //Sensor NOK
+            mainActivityViewModel.changeOutGoingMessage(9,0);
+            sensorOkBtn.setBackgroundColor(Color.GREEN);
+        }
+        else if (v == GearD){
+            mainActivityViewModel.changeOutGoingMessage(13,1);
+        }
+        else if (v == GearN){
+            mainActivityViewModel.changeOutGoingMessage(13,0);
+        }
+        else if (v == GearR){
+            mainActivityViewModel.changeOutGoingMessage(13,2);
         }
 
     }
 
     public void setOnClickListeners() {
 
-        button = findViewById(R.id.button);
-        button2 = findViewById(R.id.button2);
+        sensorOkBtn = findViewById(R.id.sensorOK);
+        sensorNOKBtn = findViewById(R.id.sensorNOK);
+        algoSetBtn = findViewById(R.id.algoSubmit);
+        algoResBtn = findViewById(R.id.algoReset);
+        ORSetBtn = findViewById(R.id.overrideSubmit);
+        ORResBtn = findViewById(R.id.overrideReset);
+        GearD = findViewById(R.id.gearD);
+        GearN = findViewById(R.id.gearN);
+        GearR = findViewById(R.id.gearR);
 
-        button.setOnClickListener(this);
-        button2.setOnClickListener(this);
+        sensorOkBtn.setOnClickListener(this);
+        sensorNOKBtn.setOnClickListener(this);
+        algoSetBtn.setOnClickListener(this);
+        algoResBtn.setOnClickListener(this);
+        ORSetBtn.setOnClickListener(this);
+        ORResBtn.setOnClickListener(this);
+        GearD.setOnClickListener(this);
+        GearN.setOnClickListener(this);
+        GearR.setOnClickListener(this);
+
     }
 
 

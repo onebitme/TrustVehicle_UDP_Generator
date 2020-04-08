@@ -82,7 +82,8 @@ public class MessageDecodeHelper {
     }
 
     public byte[] convertAsMABX2(int messageTobBeSent){
-        byte[] messageSentByte = intToByte(messageTobBeSent);
+        byte[] messageSentByte = new byte[4];
+        messageSentByte=intToByte(messageTobBeSent);
         System.out.println("ConvertMabx2 Passed");
         return messageSentByte;
     }

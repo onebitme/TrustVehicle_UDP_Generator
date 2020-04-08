@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     UDPHelper udpHelper;
     Button sensorOkBtn, sensorNOKBtn, algoSetBtn, algoResBtn,
             ORSetBtn,ORResBtn,GearD,GearN,GearR;
-    EditText overrideReasons;
+    EditText editOR, editAlgoStates;
     Repository repository = Repository.getInstance();
     MainActivityViewModel mainActivityViewModel;
     TextView textViewLocalIP;
@@ -43,14 +43,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mainActivityViewModel.startUDP(udpHelper);
         mainActivityViewModel.setMainActivity(this);
 
-
-
+        editAlgoStates = findViewById(R.id.editText);
+        editOR = findViewById(R.id.editText2);
 
     }
     public void onClick(View v) {
         if (v == sensorOkBtn) { //Sensor OK
             System.out.println("On Click Passed");
-            mainActivityViewModel.changeOutGoingMessage(9,2815);
+            mainActivityViewModel.changeOutGoingMessage(9,1);
             //0dan 1 array güncelleyecek position xdeki
             sensorOkBtn.setBackgroundColor(Color.GREEN);
         }
@@ -66,6 +66,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if (v == GearR){
             mainActivityViewModel.changeOutGoingMessage(13,2);
+        }
+        else if (v == algoSetBtn){
+            String algoState = editAlgoStates.getText().toString();
+            int algoStateInt = Integer.parseInt(algoState);
+            mainActivityViewModel.changeOutGoingMessage(10,algoStateInt);
+        }
+        else if (v == algoResBtn){
+            int algoStateInt = 0;
+            mainActivityViewModel.changeOutGoingMessage(10,algoStateInt);
+        }
+        else if (v == ORSetBtn){
+            String ORState = editOR.getText().toString();
+            int ORStateInt = Integer.parseInt(ORState);
+            mainActivityViewModel.changeOutGoingMessage(11,ORStateInt);
+        }
+        else if (v == ORResBtn){
+            int algoStateInt = 0;
+            mainActivityViewModel.changeOutGoingMessage(11,algoStateInt);
         }
 
     }

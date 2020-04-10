@@ -18,8 +18,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     UDPHelper udpHelper;
     Button sensorOkBtn, sensorNOKBtn, algoSetBtn, algoResBtn,
             ORSetBtn,ORResBtn,GearD,GearN,GearR,
-            Parking1, Parking2, Parking3, parkingReset;
-    EditText editOR, editAlgoStates;
+            Parking1, Parking2, Parking3, parkingReset,
+            speedSet,speedReset;
+    EditText editOR, editAlgoStates,editSpeed;
     Repository repository = Repository.getInstance();
     MainActivityViewModel mainActivityViewModel;
     TextView textViewLocalIP;
@@ -46,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         editAlgoStates = findViewById(R.id.editText);
         editOR = findViewById(R.id.editText2);
+        editSpeed = findViewById(R.id.editText3);
+
 
     }
     public void onClick(View v) {
@@ -110,6 +113,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Parking2.setBackgroundColor(Color.GRAY);
             Parking3.setBackgroundColor(Color.GRAY);
         }
+        else if (v == speedSet){
+            String Speed = editSpeed.getText().toString();
+            int VehicleSpeed = Integer.parseInt(Speed);
+            mainActivityViewModel.changeOutGoingMessage(12,VehicleSpeed);
+        }else if (v==speedReset){
+            int VehicleSpeed = 0;
+            mainActivityViewModel.changeOutGoingMessage(12,VehicleSpeed);
+        }
 
 
     }
@@ -132,6 +143,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Parking2 = findViewById(R.id.park2Available);
         Parking3 = findViewById(R.id.park3Available);
         parkingReset = findViewById(R.id.parkingReset);
+
+        speedSet = findViewById(R.id.speedSubmit);
+        speedReset = findViewById(R.id.speedReset);
 
         sensorOkBtn.setOnClickListener(this);
         sensorNOKBtn.setOnClickListener(this);

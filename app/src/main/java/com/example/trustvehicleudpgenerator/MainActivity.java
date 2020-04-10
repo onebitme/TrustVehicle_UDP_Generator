@@ -17,7 +17,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     UDPHelper udpHelper;
     Button sensorOkBtn, sensorNOKBtn, algoSetBtn, algoResBtn,
-            ORSetBtn,ORResBtn,GearD,GearN,GearR;
+            ORSetBtn,ORResBtn,GearD,GearN,GearR,
+            Parking1, Parking2, Parking3, parkingReset;
     EditText editOR, editAlgoStates;
     Repository repository = Repository.getInstance();
     MainActivityViewModel mainActivityViewModel;
@@ -85,6 +86,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             int algoStateInt = 0;
             mainActivityViewModel.changeOutGoingMessage(11,algoStateInt);
         }
+        else if (v == Parking1) { //Parking 1
+            mainActivityViewModel.changeOutGoingMessage(0, 1);
+            Parking1.setBackgroundColor(Color.GREEN);
+        }
+        else if (v == Parking2) { //Parking 2
+            mainActivityViewModel.changeOutGoingMessage(1, 1);
+            Parking2.setBackgroundColor(Color.GREEN);
+        }
+        else if (v == Parking3) { //Parking 3
+            mainActivityViewModel.changeOutGoingMessage(2, 1);
+            Parking3.setBackgroundColor(Color.GREEN);
+        }
+        else if (v == Parking3) { //Parking 3
+            mainActivityViewModel.changeOutGoingMessage(2, 1);
+            sensorOkBtn.setBackgroundColor(Color.GREEN);
+        }
+        else if (v == parkingReset) { //set all parking to unavailable
+            mainActivityViewModel.changeOutGoingMessage(0, 0);
+            mainActivityViewModel.changeOutGoingMessage(1, 0);
+            mainActivityViewModel.changeOutGoingMessage(2, 0);
+            Parking1.setBackgroundColor(Color.GRAY);
+            Parking2.setBackgroundColor(Color.GRAY);
+            Parking3.setBackgroundColor(Color.GRAY);
+        }
+
 
     }
 
@@ -94,11 +120,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         sensorNOKBtn = findViewById(R.id.sensorNOK);
         algoSetBtn = findViewById(R.id.algoSubmit);
         algoResBtn = findViewById(R.id.algoReset);
+
         ORSetBtn = findViewById(R.id.overrideSubmit);
         ORResBtn = findViewById(R.id.overrideReset);
+
         GearD = findViewById(R.id.gearD);
         GearN = findViewById(R.id.gearN);
         GearR = findViewById(R.id.gearR);
+
+        Parking1 = findViewById(R.id.park1Available);
+        Parking2 = findViewById(R.id.park2Available);
+        Parking3 = findViewById(R.id.park3Available);
+        parkingReset = findViewById(R.id.parkingReset);
 
         sensorOkBtn.setOnClickListener(this);
         sensorNOKBtn.setOnClickListener(this);
@@ -109,6 +142,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         GearD.setOnClickListener(this);
         GearN.setOnClickListener(this);
         GearR.setOnClickListener(this);
+        Parking1.setOnClickListener(this);
+        Parking2.setOnClickListener(this);
+        Parking3.setOnClickListener(this);
+        parkingReset.setOnClickListener(this);
 
     }
 

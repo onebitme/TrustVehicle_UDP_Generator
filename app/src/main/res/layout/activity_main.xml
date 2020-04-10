@@ -7,32 +7,58 @@
     android:background="@color/colorBackGround"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/gearR"
-        android:layout_width="99dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="8dp"
-        android:text="Reverse"
-        app:layout_constraintBottom_toBottomOf="@+id/sensorNOK"
-        app:layout_constraintEnd_toEndOf="parent"
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="76dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:text="VehicleSpeed"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="@+id/editText3"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/overrideReset"
-        app:layout_constraintTop_toBottomOf="@+id/sensorOK" />
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="107dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="36dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/sensorNOK"
-        app:layout_constraintStart_toEndOf="@+id/sensorOK"
-        app:layout_constraintTop_toTopOf="@+id/sensorOK"
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Available Parking"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/park2Available"
+        app:layout_constraintEnd_toEndOf="@+id/sensorOK"
+        app:layout_constraintHorizontal_bias="0.516"
+        app:layout_constraintStart_toStartOf="@+id/sensorOK"
+        app:layout_constraintTop_toBottomOf="@+id/sensorNOK" />
+
+    <Button
+        android:id="@+id/park2Available"
+        android:layout_width="40dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
+        android:text="P2 Available"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/sensorOK"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/park1Available"
+        app:layout_constraintTop_toBottomOf="@+id/sensorNOK"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/park3Available"
+        android:layout_width="40dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
+        android:text="P3 Available"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/editText"
+        app:layout_constraintStart_toEndOf="@+id/park2Available"
+        app:layout_constraintTop_toBottomOf="@+id/sensorNOK"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
@@ -45,44 +71,7 @@
         app:layout_constraintHorizontal_bias="0.201"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.756" />
-
-    <Button
-        android:id="@+id/algoSubmit"
-        android:layout_width="54dp"
-        android:layout_height="37dp"
-        android:text="Submit"
-        android:textSize="8sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/overrideSubmit"
-        android:layout_width="54dp"
-        android:layout_height="38dp"
-        android:text="Submit"
-        android:textSize="8sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/overrideReset"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editText2"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
-        app:layout_constraintVertical_bias="0.023" />
-
-    <Button
-        android:id="@+id/gearN"
-        android:layout_width="46dp"
-        android:layout_height="37dp"
-        android:text='"N"'
-        app:layout_constraintBottom_toTopOf="@+id/gearR"
-        app:layout_constraintEnd_toEndOf="@+id/gearR"
-        app:layout_constraintHorizontal_bias="0.984"
-        app:layout_constraintStart_toStartOf="@+id/gearR"
-        app:layout_constraintTop_toTopOf="@+id/editText2" />
+        app:layout_constraintVertical_bias="0.296" />
 
     <TextView
         android:id="@+id/textView"
@@ -95,21 +84,134 @@
         app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="@+id/sensorOK"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.958" />
+        app:layout_constraintVertical_bias="0.884" />
+
+    <Button
+        android:id="@+id/gearD"
+        android:layout_width="46dp"
+        android:layout_height="37dp"
+        android:text='"D"'
+        app:layout_constraintBottom_toTopOf="@+id/gearR"
+        app:layout_constraintEnd_toStartOf="@+id/gearN"
+        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintStart_toEndOf="@+id/editText2"
+        app:layout_constraintTop_toTopOf="@+id/editText2"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <Button
+        android:id="@+id/overrideSubmit"
+        android:layout_width="54dp"
+        android:layout_height="38dp"
+        android:text="Submit"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/overrideReset"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintVertical_bias="0.009" />
+
+    <Button
+        android:id="@+id/overrideReset"
+        android:layout_width="49dp"
+        android:layout_height="37dp"
+        android:text="Reset"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="@+id/overrideSubmit"
+        app:layout_constraintEnd_toEndOf="@+id/editText2"
+        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/editText2"
         android:layout_width="107dp"
         android:layout_height="47dp"
-        android:layout_marginStart="132dp"
-        android:layout_marginLeft="132dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginLeft="116dp"
         android:layout_marginBottom="36dp"
         android:ems="10"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="@+id/sensorNOK"
         app:layout_constraintStart_toEndOf="@+id/sensorOK"
         app:layout_constraintTop_toTopOf="@+id/editText"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/sensorNOK"
+        android:layout_width="111dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="8dp"
+        android:text="NOK (0)"
+        app:layout_constraintEnd_toEndOf="@+id/sensorOK"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/sensorOK"
+        app:layout_constraintTop_toBottomOf="@+id/sensorOK" />
+
+    <Button
+        android:id="@+id/algoReset"
+        android:layout_width="54dp"
+        android:layout_height="37dp"
+        android:text="Reset"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editText"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/algoSubmit"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintVertical_bias="0.004" />
+
+    <Button
+        android:id="@+id/speedReset"
+        android:layout_width="54dp"
+        android:layout_height="37dp"
+        android:text="Reset"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/algoSubmit"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintVertical_bias="0.564" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Algo States"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintEnd_toEndOf="@+id/editText"
+        app:layout_constraintHorizontal_bias="0.586"
+        app:layout_constraintStart_toStartOf="@+id/editText"
+        app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/gearR"
+        android:layout_width="99dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
+        android:text="Reverse"
+        app:layout_constraintBottom_toBottomOf="@+id/sensorNOK"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintStart_toEndOf="@+id/overrideReset"
+        app:layout_constraintTop_toBottomOf="@+id/sensorOK"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/gearN"
+        android:layout_width="46dp"
+        android:layout_height="37dp"
+        android:text='"N"'
+        app:layout_constraintBottom_toTopOf="@+id/gearR"
+        app:layout_constraintEnd_toEndOf="@+id/gearR"
+        app:layout_constraintHorizontal_bias="0.981"
+        app:layout_constraintStart_toStartOf="@+id/gearR"
+        app:layout_constraintTop_toTopOf="@+id/editText2"
+        app:layout_constraintVertical_bias="0.6" />
 
     <TextView
         android:id="@+id/textView4"
@@ -124,39 +226,36 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/gearD"
         app:layout_constraintTop_toTopOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="107dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="36dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/sensorNOK"
+        app:layout_constraintStart_toEndOf="@+id/sensorOK"
+        app:layout_constraintTop_toTopOf="@+id/sensorOK"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/overrideReset"
-        android:layout_width="49dp"
-        android:layout_height="37dp"
-        android:text="Reset"
-        android:textSize="8sp"
-        app:layout_constraintBottom_toBottomOf="@+id/overrideSubmit"
-        app:layout_constraintEnd_toEndOf="@+id/editText2"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
-
-    <Button
-        android:id="@+id/sensorNOK"
-        android:layout_width="111dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="12dp"
-        android:text="NOK (0)"
-        app:layout_constraintEnd_toEndOf="@+id/sensorOK"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/sensorOK"
-        app:layout_constraintTop_toBottomOf="@+id/sensorOK" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Algo States"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintStart_toStartOf="@+id/editText"
-        app:layout_constraintTop_toTopOf="@+id/textView" />
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="107dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/park3Available"
+        app:layout_constraintTop_toTopOf="@+id/park2Available"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView2"
@@ -171,30 +270,59 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editText2"
         app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/algoReset"
+        android:id="@+id/algoSubmit"
         android:layout_width="54dp"
         android:layout_height="37dp"
-        android:text="Reset"
+        android:text="Submit"
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editText"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/algoSubmit"
+        app:layout_constraintHorizontal_bias="0.056"
+        app:layout_constraintStart_toStartOf="@+id/editText"
         app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintVertical_bias="0.004" />
+
+    <Button
+        android:id="@+id/speedSubmit"
+        android:layout_width="54dp"
+        android:layout_height="37dp"
+        android:text="Submit"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/editText"
+        app:layout_constraintHorizontal_bias="0.037"
+        app:layout_constraintStart_toStartOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintVertical_bias="0.564" />
+
+    <Button
+        android:id="@+id/park1Available"
+        android:layout_width="40dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
+        android:text="P1 Available"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/sensorOK"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/sensorOK"
+        app:layout_constraintTop_toBottomOf="@+id/sensorNOK"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/gearD"
-        android:layout_width="46dp"
-        android:layout_height="37dp"
-        android:text='"D"'
-        app:layout_constraintBottom_toTopOf="@+id/gearR"
-        app:layout_constraintEnd_toStartOf="@+id/gearN"
-        app:layout_constraintHorizontal_bias="0.724"
-        app:layout_constraintStart_toEndOf="@+id/editText2"
-        app:layout_constraintTop_toTopOf="@+id/editText2" />
+        android:id="@+id/parkingReset"
+        android:layout_width="116dp"
+        android:layout_height="30dp"
+        android:text="Reset"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/park3Available"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/park1Available"
+        app:layout_constraintTop_toBottomOf="@+id/park2Available"
+        app:layout_constraintVertical_bias="0.187" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

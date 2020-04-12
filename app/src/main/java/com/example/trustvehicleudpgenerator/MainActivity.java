@@ -16,14 +16,19 @@ import com.example.trustvehicleudpgenerator.Repositories.Repository;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     UDPHelper udpHelper;
+
     Button sensorOkBtn, sensorNOKBtn, algoSetBtn, algoResBtn,
             ORSetBtn,ORResBtn,GearD,GearN,GearR,
             Parking1, Parking2, Parking3, parkingReset,
-            speedSet,speedReset;
+            speedSet,speedReset, tvInitial, tvGoal, tvRandom;
+
     EditText editOR, editAlgoStates,editSpeed;
     Repository repository = Repository.getInstance();
     MainActivityViewModel mainActivityViewModel;
     TextView textViewLocalIP;
+
+    float truckX,truckY,truckHeading,hitchAngle;
+    int truckXint,truckYint,truckHeadingint,hitchAngleint;
 
 
     @Override
@@ -48,6 +53,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editAlgoStates = findViewById(R.id.editText);
         editOR = findViewById(R.id.editText2);
         editSpeed = findViewById(R.id.editText3);
+
+        //TrustVehicle Initial and goalpos
+
 
 
     }
@@ -121,6 +129,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             int VehicleSpeed = 0;
             mainActivityViewModel.changeOutGoingMessage(12,VehicleSpeed);
         }
+        else if (v == tvInitial){
+            truckX = 114f;
+            truckY = 42f;
+            truckHeading = 0.01f; //in radians
+            hitchAngle = 0.0f; //in radians
+
+            truckXint = Math.round(truckX*10f+65536f);
+            truckYint = Math.round(truckY*10f+65536f);
+            truckHeadingint = Math.round(truckHeading*1000f+65536f);
+            hitchAngleint = Math.round(hitchAngle*10f+65536f);
+
+            mainActivityViewModel.changeOutGoingMessage(5,truckXint);
+            mainActivityViewModel.changeOutGoingMessage(6,truckYint);
+            mainActivityViewModel.changeOutGoingMessage(7,truckHeadingint);
+            mainActivityViewModel.changeOutGoingMessage(8,hitchAngleint);
+            System.out.println("tvInitial pressed");
+        }
+        else if (v == tvGoal){
+            truckX = 85f;
+            truckY = 24f;
+            truckHeading = 1.5707f; //in radians
+            hitchAngle = 1.5707f; //in radians
+
+            truckXint = Math.round(truckX*10f+65536f);
+            truckYint = Math.round(truckY*10f+65536f);
+            truckHeadingint = Math.round(truckHeading*1000f+65536f);
+            hitchAngleint = Math.round(hitchAngle*10f+65536f);
+
+            mainActivityViewModel.changeOutGoingMessage(5,truckXint);
+            mainActivityViewModel.changeOutGoingMessage(6,truckYint);
+            mainActivityViewModel.changeOutGoingMessage(7,truckHeadingint);
+            mainActivityViewModel.changeOutGoingMessage(8,hitchAngleint);
+        }
 
 
     }
@@ -147,6 +188,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         speedSet = findViewById(R.id.speedSubmit);
         speedReset = findViewById(R.id.speedReset);
 
+        tvInitial = findViewById(R.id.tvInitial);
+        tvGoal = findViewById(R.id.tvGoal);
+        tvRandom = findViewById(R.id.tvRandom);
+
         sensorOkBtn.setOnClickListener(this);
         sensorNOKBtn.setOnClickListener(this);
         algoSetBtn.setOnClickListener(this);
@@ -160,6 +205,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Parking2.setOnClickListener(this);
         Parking3.setOnClickListener(this);
         parkingReset.setOnClickListener(this);
+        tvInitial.setOnClickListener(this);
+        tvGoal.setOnClickListener(this);
+        tvRandom.setOnClickListener(this);
 
     }
 

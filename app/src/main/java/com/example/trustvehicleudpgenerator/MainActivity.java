@@ -13,6 +13,8 @@ import android.widget.TextView;
 import com.example.trustvehicleudpgenerator.Helpers.UDPHelper;
 import com.example.trustvehicleudpgenerator.Repositories.Repository;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     UDPHelper udpHelper;
@@ -25,10 +27,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText editOR, editAlgoStates,editSpeed;
     Repository repository = Repository.getInstance();
     MainActivityViewModel mainActivityViewModel;
-    TextView textViewLocalIP;
+    TextView textViewLocalIP, textViewRandPos;
 
     float truckX,truckY,truckHeading,hitchAngle;
     int truckXint,truckYint,truckHeadingint,hitchAngleint;
+
+    Random r1,r2,r3,r4;
+
+    {
+        r1 = new Random();
+        r2 = new Random();
+        r3 = new Random();
+        r4 = new Random();
+    }
 
 
     @Override
@@ -53,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editAlgoStates = findViewById(R.id.editText);
         editOR = findViewById(R.id.editText2);
         editSpeed = findViewById(R.id.editText3);
+        textViewRandPos=findViewById(R.id.randomPos);
 
         //TrustVehicle Initial and goalpos
 
@@ -133,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             truckX = 114f;
             truckY = 42f;
             truckHeading = 0.01f; //in radians
-            hitchAngle = 0.0f; //in radians
+            hitchAngle = 0.01f; //in radians
 
             truckXint = Math.round(truckX*10f+65536f);
             truckYint = Math.round(truckY*10f+65536f);
@@ -144,7 +156,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mainActivityViewModel.changeOutGoingMessage(6,truckYint);
             mainActivityViewModel.changeOutGoingMessage(7,truckHeadingint);
             mainActivityViewModel.changeOutGoingMessage(8,hitchAngleint);
-            System.out.println("tvInitial pressed");
+            textViewRandPos.setText("truckX: "+ truckX + "//truckY: "+ truckY +"//truck heading: " +truckHeading+"//trailer heading: " + hitchAngle);
+
         }
         else if (v == tvGoal){
             truckX = 85f;
@@ -161,6 +174,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mainActivityViewModel.changeOutGoingMessage(6,truckYint);
             mainActivityViewModel.changeOutGoingMessage(7,truckHeadingint);
             mainActivityViewModel.changeOutGoingMessage(8,hitchAngleint);
+            textViewRandPos.setText("truckX: "+ truckX + "//truckY: "+ truckY +"//truck heading: " +truckHeading+"//trailer heading: " + hitchAngle);
+
+        }
+        else if (v == tvRandom){
+            truckX = 80f-r1.nextFloat()*(114f-80f);
+            truckY = 24f-r2.nextFloat()*(42f-24f);
+            truckHeading = 0.01f+(1.5707f-0.01f)*r3.nextFloat(); //in radians
+            hitchAngle = 0.01f+(1.5707f-0.01f)*r4.nextFloat(); //in radians
+
+            truckXint = Math.round(truckX*10f+65536f);
+            truckYint = Math.round(truckY*10f+65536f);
+            truckHeadingint = Math.round(truckHeading*1000f+65536f);
+            hitchAngleint = Math.round(hitchAngle*10f+65536f);
+
+            mainActivityViewModel.changeOutGoingMessage(5,truckXint);
+            mainActivityViewModel.changeOutGoingMessage(6,truckYint);
+            mainActivityViewModel.changeOutGoingMessage(7,truckHeadingint);
+            mainActivityViewModel.changeOutGoingMessage(8,hitchAngleint);
+
+            textViewRandPos.setText("truckX: "+ truckX + "//truckY: "+ truckY +"//truck heading: " +truckHeading+"//trailer heading: " + hitchAngle);
         }
 
 

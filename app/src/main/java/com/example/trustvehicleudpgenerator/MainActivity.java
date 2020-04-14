@@ -13,11 +13,13 @@ import android.widget.TextView;
 import com.example.trustvehicleudpgenerator.Helpers.UDPHelper;
 import com.example.trustvehicleudpgenerator.Repositories.Repository;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     UDPHelper udpHelper;
+
 
     Button sensorOkBtn, sensorNOKBtn, algoSetBtn, algoResBtn,
             ORSetBtn,ORResBtn,GearD,GearN,GearR,
@@ -142,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mainActivityViewModel.changeOutGoingMessage(12,VehicleSpeed);
         }
         else if (v == tvInitial){
-            truckX = 114f;
+            truckX = 135f;
             truckY = 42f;
             truckHeading = 0.01f; //in radians
             hitchAngle = 0.01f; //in radians
@@ -179,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else if (v == tvRandom){
             truckX = 80f-r1.nextFloat()*(114f-80f);
-            truckY = 24f-r2.nextFloat()*(42f-24f);
+            truckY = 20f-r2.nextFloat()*(42f-24f);
             truckHeading = 0.01f+(1.5707f-0.01f)*r3.nextFloat(); //in radians
             hitchAngle = 0.01f+(1.5707f-0.01f)*r4.nextFloat(); //in radians
 
@@ -194,6 +196,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mainActivityViewModel.changeOutGoingMessage(8,hitchAngleint);
 
             textViewRandPos.setText("truckX: "+ truckX + "//truckY: "+ truckY +"//truck heading: " +truckHeading+"//trailer heading: " + hitchAngle);
+
+
         }
 
 

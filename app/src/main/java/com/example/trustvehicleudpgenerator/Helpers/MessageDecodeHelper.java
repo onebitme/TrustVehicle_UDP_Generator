@@ -71,7 +71,6 @@ public class MessageDecodeHelper {
         return byteBuffer.array();
     }
 
-    //TODO: TEST HERE
     ByteBuffer _intShifter = ByteBuffer.allocate(Integer.SIZE / Byte.SIZE)
             .order(ByteOrder.LITTLE_ENDIAN);
 

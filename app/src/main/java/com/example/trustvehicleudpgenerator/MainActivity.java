@@ -5,18 +5,24 @@ import androidx.lifecycle.ViewModelProviders;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.trustvehicleudpgenerator.Helpers.UDPHelper;
+import com.example.trustvehicleudpgenerator.Helpers.TTStatesGenerator;
 import com.example.trustvehicleudpgenerator.Repositories.Repository;
 
+import java.io.InputStream;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+
+
 
     UDPHelper udpHelper;
 
@@ -24,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button sensorOkBtn, sensorNOKBtn, algoSetBtn, algoResBtn,
             ORSetBtn,ORResBtn,GearD,GearN,GearR,
             Parking1, Parking2, Parking3, parkingReset,
-            speedSet,speedReset, tvInitial, tvGoal, tvRandom;
+            speedSet,speedReset, tvInitial, tvGoal, tvRandom, tvPlay;
 
     EditText editOR, editAlgoStates,editSpeed;
     Repository repository = Repository.getInstance();
@@ -33,6 +39,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     float truckX,truckY,truckHeading,hitchAngle;
     int truckXint,truckYint,truckHeadingint,hitchAngleint;
+
+    TTStatesGenerator ttStatesGenerator = new TTStatesGenerator();
+    final float[][] ttStates = ttStatesGenerator.makeStates();
+
 
     Random r1,r2,r3,r4;
 
@@ -56,8 +66,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setOnClickListeners();
         initOtherObjects();
 
-
-
         mainActivityViewModel.init();
         mainActivityViewModel.setLocalIp(textViewLocalIP);
         mainActivityViewModel.startUDP(udpHelper);
@@ -74,6 +82,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
     public void onClick(View v) {
+
+        Handler handler1 = new Handler();
+
         if (v == sensorOkBtn) { //Sensor OK
             System.out.println("On Click Passed");
             mainActivityViewModel.changeOutGoingMessage(9,1);
@@ -197,6 +208,37 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             textViewRandPos.setText("truckX: "+ truckX + "//truckY: "+ truckY +"//truck heading: " +truckHeading+"//trailer heading: " + hitchAngle);
 
+            float[][] deneme = ttStatesGenerator.makeStates();
+
+            System.out.println(deneme[0][1]);
+            System.out.println(deneme[1][1]);
+            System.out.println(deneme[2][1]);
+            System.out.println(deneme[3][1]);
+
+        }
+        else if (v == tvPlay){
+
+            for (int i=1; i<=ttStates[0].length; i++){
+                final int statesIndex = i-1;
+
+                handler1.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        truckXint = Math.round(ttStates[0][statesIndex]*10f+65536f);
+                        truckYint = Math.round(ttStates[1][statesIndex]*10f+65536f);
+                        truckHeadingint = Math.round(ttStates[2][statesIndex]*1000f+65536f);
+                        hitchAngleint = Math.round(ttStates[3][statesIndex]*10f+65536f);
+
+                        mainActivityViewModel.changeOutGoingMessage(5,truckXint);
+                        mainActivityViewModel.changeOutGoingMessage(6,truckYint);
+                        mainActivityViewModel.changeOutGoingMessage(7,truckHeadingint);
+                        mainActivityViewModel.changeOutGoingMessage(8,hitchAngleint);
+                        textViewRandPos.setText("truckX: "+ ttStates[0][statesIndex] + "//truckY: "+ ttStates[1][statesIndex] +"//truck heading: " +ttStates[2][statesIndex]+"//trailer heading: " + ttStates[3][statesIndex]);
+
+
+                    }
+                },200*i);
+            }
 
         }
 
@@ -228,6 +270,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvInitial = findViewById(R.id.tvInitial);
         tvGoal = findViewById(R.id.tvGoal);
         tvRandom = findViewById(R.id.tvRandom);
+        tvPlay = findViewById(R.id.tvPlayStates);
 
         sensorOkBtn.setOnClickListener(this);
         sensorNOKBtn.setOnClickListener(this);
@@ -245,6 +288,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tvInitial.setOnClickListener(this);
         tvGoal.setOnClickListener(this);
         tvRandom.setOnClickListener(this);
+        tvPlay.setOnClickListener(this);
 
     }
 

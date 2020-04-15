@@ -1,6 +1,9 @@
 package com.example.trustvehicleudpgenerator.Helpers;
 
+import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.example.trustvehicleudpgenerator.R;
 
@@ -8,56 +11,45 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class TTStatesGenerator {
 
-    Resources res;
+    public String Y_pos= "41.481,41.488,41.488,41.488,41.478,41.455,41.419,41.374,41.318,41.268,41.2,41.125,41.057,40.979,40.919,40.872,40.83,40.788,40.757,40.734,40.723,40.711,40.698,40.692,40.714,40.736,40.752,40.77,40.798,40.854,40.928,40.972,41.006,41.048,41.104,41.173,41.22,41.275,41.326,41.362,41.368,41.34,41.294,41.206,41.096,40.977,40.825,40.656,40.496,40.34,40.128,39.887,39.56,39.128,38.599,38.155,37.833,37.577,37.346,37.179,37.066,36.967,36.767,36.608,36.361,35.91,35.435,35.017,34.581,34.116,33.713,33.236,32.686,32.036,31.372,30.78,30.278,29.888,29.615,29.428,29.329,29.266,29.204,29.025,28.664,28.249,27.816,27.382,26.949,26.488,26.035,25.617,25.236,24.886,24.483,24.126,23.874,23.673,23.433,23.159,22.842,22.594,22.424,22.309,22.215,22.054,21.784,21.459,21.183,20.989,20.809,20.615,20.468,20.415,20.415,20.422,20.416,20.422,20.423,20.41,20.41,20.41";
+    public String X_pos= "109.24,109.23,109.23,109.23,109.15,108.88,108.52,108.14,107.72,107.3,106.88,106.46,106.04,105.63,105.2,104.78,104.38,104.03,103.65,103.27,102.89,102.54,102.21,101.89,101.58,101.32,101.04,100.71,100.37,99.997,99.619,99.298,98.988,98.647,98.298,97.968,97.711,97.42,97.125,96.745,96.317,95.89,95.353,94.741,94.184,93.716,93.2,92.74,92.413,92.114,91.77,91.43,91.026,90.53,90.016,89.676,89.476,89.326,89.205,89.13,89.064,88.995,88.898,88.841,88.744,88.603,88.49,88.435,88.406,88.434,88.492,88.569,88.65,88.701,88.748,88.816,88.897,88.976,89.052,89.109,89.136,89.153,89.168,89.194,89.182,89.156,89.159,89.163,89.199,89.249,89.29,89.299,89.309,89.315,89.315,89.309,89.329,89.365,89.413,89.475,89.564,89.653,89.714,89.735,89.758,89.774,89.798,89.829,89.86,89.897,89.923,89.944,89.955,89.964,89.964,89.967,89.976,89.97,89.98,89.983,89.982,89.982";
+    public String TruckTheta = "0.043459,0.04311,0.04311,0.04311,0.042412,0.04311,0.049567,0.061261,0.078714,0.096342,0.10263,0.096168,0.076445,0.053058,0.032638,0.015184,-0.00087266,-0.020944,-0.043459,-0.063879,-0.080809,-0.099833,-0.13055,-0.15917,-0.17139,-0.17401,-0.1782,-0.20263,-0.2323,-0.23859,-0.22759,-0.21956,-0.23143,-0.2529,-0.2529,-0.23021,-0.20228,-0.16528,-0.12165,-0.062134,-0.0085521,0.032114,0.081332,0.1501,0.22131,0.28309,0.35779,0.42883,0.48503,0.53913,0.59359,0.63233,0.6812,0.75695,0.8594,0.94283,0.99798,1.0381,1.0739,1.1027,1.1226,1.1428,1.1846,1.2137,1.2617,1.346,1.4345,1.5097,1.5877,1.6464,1.6486,1.6291,1.6099,1.6153,1.6443,1.6741,1.6855,1.665,1.6176,1.5684,1.5378,1.5251,1.5111,1.4856,1.4856,1.5183,1.5619,1.5972,1.5977,1.5699,1.5422,1.5345,1.5375,1.5518,1.5975,1.6574,1.7019,1.7401,1.7668,1.7684,1.753,1.7122,1.6785,1.6525,1.6329,1.6237,1.6246,1.6321,1.6324,1.6183,1.6019,1.5872,1.5776,1.5743,1.5741,1.5736,1.5734,1.5745,1.5732,1.5725,1.572,1.572";
+    public String TrailerTheta = "0.1028,0.1028,0.1028,0.10263,0.10263,0.10367,0.10594,0.10873,0.11083,0.11153,0.10961,0.10664,0.10263,0.098611,0.097389,0.099135,0.1021,0.10524,0.11013,0.11781,0.12671,0.13771,0.14923,0.16284,0.1789,0.19338,0.21118,0.23161,0.25761,0.28972,0.32341,0.3536,0.38345,0.41888,0.45902,0.49707,0.52744,0.5613,0.59463,0.63705,0.68173,0.72641,0.78261,0.84893,0.91054,0.96185,1.0179,1.0674,1.1029,1.1339,1.1706,1.2088,1.2575,1.3195,1.3839,1.4289,1.4567,1.48,1.4971,1.5106,1.5195,1.5277,1.5437,1.5549,1.5711,1.5975,1.6177,1.6312,1.642,1.6472,1.6439,1.6378,1.6338,1.6336,1.6338,1.6312,1.6233,1.6141,1.6013,1.5945,1.593,1.5931,1.5926,1.593,1.6015,1.615,1.6223,1.6254,1.6256,1.6235,1.6244,1.6277,1.6324,1.639,1.6464,1.6513,1.6535,1.6549,1.6523,1.645,1.6342,1.6218,1.6139,1.6094,1.6068,1.604,1.6008,1.5966,1.5923,1.5876,1.5837,1.5799,1.578,1.5771,1.5773,1.5767,1.5767,1.5766,1.5764,1.5767,1.5767,1.5766";
 
 
-    public float[][] parseCSV(){
-        /*
-        var floatCoordinatesString = coordinatePath.replace("\t","f,")
-        var floatCoordinatesStringArray = floatCoordinatesString.split(",").toTypedArray();
-        var j=0;
-        var floatCoordinatesXY = FloatArray(floatCoordinatesStringArray.size)
-        for (key in floatCoordinatesStringArray){
-            if (j % 2 == 0){
-                floatCoordinatesXY[j] = key.toFloat()*10f//-200f
-            }
-            else if (j%2==1){
-                floatCoordinatesXY[j] = 900f- key.toFloat()*10f//-200f
-            }
-            j=j+1
-        }*/
+    public float[] parseCSVtoFloatArray(String someState){
 
-        String x_pos = res.getResourceEntryName(R.raw.xpos);
-        String y_pos = res.getResourceEntryName(R.raw.ypos);
-        String truck_theta = res.getResourceEntryName(R.raw.trucktheta);
-        String trailer_theta = res.getResourceEntryName(R.raw.trailertheta);
+        String firstAddF = someState.replace(",","f,");
+        String[] thenConvStrArr = firstAddF.split(",");
 
-        /*try {
+        float [] returnAstateArray = new float[thenConvStrArr.length];
 
+        for(int i=0; i<thenConvStrArr.length; i++){
+            returnAstateArray[i]=Float.parseFloat(thenConvStrArr[i]);
+        }
 
-            byte[] b = new byte[in_s.available()];
-            in_s.read(b);
-            result = new String(b);
-        } catch (Exception e) {
-            // e.printStackTrace();
-            result = "Error: can't show file.";
-        }*/
-
-
-        //TODO: Returns fromString2Floatvalues 4x.... Matrix
-        final float[][] floats = new float[4][10];
-        return floats;
+        return returnAstateArray;
     }
 
-    public float[] makeStates(){
+    public float[][] makeStates(){
+        float[] xPos = parseCSVtoFloatArray(X_pos);
+        float[] yPos = parseCSVtoFloatArray(Y_pos);
+        float[] truckTheta = parseCSVtoFloatArray(TruckTheta);
+        float[] trailerTheta = parseCSVtoFloatArray(TrailerTheta);
 
-        //TODO: Returns a 1x4 float everytime it is called
-        final float[] floats = new float[30];
+        final float[][] floats = new float[4][xPos.length];
+        floats[0]=xPos;
+        floats[1]=yPos;
+        floats[2]=truckTheta;
+        floats[3]=trailerTheta;
+
         return floats;
     }
 

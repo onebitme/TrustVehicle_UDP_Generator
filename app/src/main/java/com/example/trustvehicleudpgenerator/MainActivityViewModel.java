@@ -100,7 +100,6 @@ public class MainActivityViewModel extends AndroidViewModel {
     }
 
     public void changeOutGoingMessage(int positionInMessageList, int valueToSet) {
-        //TODO: Test
         MessageDecodeHelper mp = new MessageDecodeHelper();
         byte[] valuesToWrite = mp.convertAsMABX2(valueToSet);
         int indexOutgoing = positionInMessageList*4;

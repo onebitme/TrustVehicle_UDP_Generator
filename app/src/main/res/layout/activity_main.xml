@@ -421,6 +421,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.609" />
+        app:layout_constraintVertical_bias="0.453" />
+
+    <Button
+        android:id="@+id/speedRand"
+        android:layout_width="102dp"
+        android:layout_height="34dp"
+        android:text="Random_10"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="@+id/editText3"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="@+id/editText3"
+        app:layout_constraintTop_toBottomOf="@+id/speedSubmit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

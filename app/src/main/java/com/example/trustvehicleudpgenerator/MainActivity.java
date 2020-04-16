@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button sensorOkBtn, sensorNOKBtn, algoSetBtn, algoResBtn,
             ORSetBtn,ORResBtn,GearD,GearN,GearR,
             Parking1, Parking2, Parking3, parkingReset,
-            speedSet,speedReset, tvInitial, tvGoal, tvRandom, tvPlay;
+            speedSet,speedReset, speedRand, tvInitial, tvGoal, tvRandom, tvPlay;
 
     EditText editOR, editAlgoStates,editSpeed;
     Repository repository = Repository.getInstance();
@@ -44,13 +44,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     final float[][] ttStates = ttStatesGenerator.makeStates();
 
 
-    Random r1,r2,r3,r4;
+    Random r1,r2,r3,r4,r5;
 
     {
         r1 = new Random();
         r2 = new Random();
         r3 = new Random();
         r4 = new Random();
+        r5 = new Random();
     }
 
 
@@ -152,6 +153,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             mainActivityViewModel.changeOutGoingMessage(12,VehicleSpeed);
         }else if (v==speedReset){
             int VehicleSpeed = 0;
+            mainActivityViewModel.changeOutGoingMessage(12,VehicleSpeed);
+        }else if (v==speedRand){
+            int VehicleSpeed = Math.round(r5.nextFloat()*(9f));
             mainActivityViewModel.changeOutGoingMessage(12,VehicleSpeed);
         }
         else if (v == tvInitial){
@@ -266,6 +270,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         speedSet = findViewById(R.id.speedSubmit);
         speedReset = findViewById(R.id.speedReset);
+        speedRand = findViewById(R.id.speedRand);
 
         tvInitial = findViewById(R.id.tvInitial);
         tvGoal = findViewById(R.id.tvGoal);
@@ -274,21 +279,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         sensorOkBtn.setOnClickListener(this);
         sensorNOKBtn.setOnClickListener(this);
+
         algoSetBtn.setOnClickListener(this);
         algoResBtn.setOnClickListener(this);
+
         ORSetBtn.setOnClickListener(this);
         ORResBtn.setOnClickListener(this);
+
         GearD.setOnClickListener(this);
         GearN.setOnClickListener(this);
         GearR.setOnClickListener(this);
+
         Parking1.setOnClickListener(this);
         Parking2.setOnClickListener(this);
         Parking3.setOnClickListener(this);
         parkingReset.setOnClickListener(this);
+
         tvInitial.setOnClickListener(this);
         tvGoal.setOnClickListener(this);
         tvRandom.setOnClickListener(this);
         tvPlay.setOnClickListener(this);
+
+        speedSet.setOnClickListener(this);
+        speedReset.setOnClickListener(this);
+        speedRand.setOnClickListener(this);
+
+
 
     }
 

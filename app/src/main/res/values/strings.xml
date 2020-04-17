@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">TrustVehicle UDP Generator</string>
+    <string name="X">X</string>
+    <string name="Y">Y</string>
+    <string name="Heading">Heading</string>
+    <string name="Algostates">Algo States (0-6)</string>
+    <string name="Overrides">Override Reasons (0-3)</string>
 </resources>

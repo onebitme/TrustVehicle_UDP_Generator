@@ -8,6 +8,69 @@
     tools:context=".MainActivity">
 
     <Button
+        android:id="@+id/objReset"
+        android:layout_width="54dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="52dp"
+        android:text="Reset"
+        android:textSize="8sp"
+        app:layout_constraintEnd_toEndOf="@+id/objSubmit"
+        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintStart_toStartOf="@+id/objSubmit"
+        app:layout_constraintTop_toBottomOf="@+id/objY" />
+
+    <Button
+        android:id="@+id/objSubmit"
+        android:layout_width="54dp"
+        android:layout_height="37dp"
+        android:text="Submit"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="@+id/objHeadinf"
+        app:layout_constraintEnd_toEndOf="@+id/objY"
+        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintStart_toEndOf="@+id/objHeadinf"
+        app:layout_constraintTop_toBottomOf="@+id/objY"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/objY"
+        android:layout_width="73dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:hint="@string/Y"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/objX"
+        app:layout_constraintStart_toEndOf="@+id/objX"
+        app:layout_constraintTop_toBottomOf="@+id/overrideSubmit"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/objHeadinf"
+        android:layout_width="73dp"
+        android:layout_height="45dp"
+        android:ems="10"
+        android:hint="@string/Heading"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/speedReset"
+        app:layout_constraintEnd_toStartOf="@+id/objY"
+        app:layout_constraintStart_toStartOf="@+id/objX"
+        app:layout_constraintTop_toBottomOf="@+id/objX" />
+
+    <EditText
+        android:id="@+id/objX"
+        android:layout_width="73dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:ems="10"
+        android:hint="@string/X"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="@+id/editText3"
+        app:layout_constraintStart_toEndOf="@+id/editText3"
+        app:layout_constraintTop_toBottomOf="@+id/overrideSubmit"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
         android:id="@+id/tvPlayStates"
         android:layout_width="97dp"
         android:layout_height="36dp"
@@ -21,7 +84,19 @@
         app:layout_constraintVertical_bias="0.759" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/objectSetter"
+        android:layout_width="76dp"
+        android:layout_height="18dp"
+        android:text="Object Setter"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView5"
+        app:layout_constraintEnd_toEndOf="@+id/objY"
+        app:layout_constraintStart_toStartOf="@+id/objX"
+        app:layout_constraintTop_toTopOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView7"
         android:layout_width="76dp"
         android:layout_height="18dp"
         android:layout_marginStart="40dp"
@@ -127,11 +202,13 @@
         android:id="@+id/editText2"
         android:layout_width="107dp"
         android:layout_height="47dp"
-        android:layout_marginStart="116dp"
-        android:layout_marginLeft="116dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginLeft="128dp"
         android:layout_marginBottom="36dp"
         android:ems="10"
+        android:hint="@string/Overrides"
         android:inputType="number"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/sensorNOK"
         app:layout_constraintStart_toEndOf="@+id/sensorOK"
         app:layout_constraintTop_toTopOf="@+id/editText"
@@ -197,10 +274,10 @@
         android:textSize="12sp"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="@+id/gearN"
-        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/gearD"
         app:layout_constraintTop_toTopOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/gearR"
@@ -236,6 +313,7 @@
         android:text='"D"'
         app:layout_constraintBottom_toTopOf="@+id/gearR"
         app:layout_constraintEnd_toStartOf="@+id/gearN"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/gearR"
         app:layout_constraintTop_toTopOf="@+id/editText2"
         app:layout_constraintVertical_bias="0.6" />
@@ -248,7 +326,11 @@
         android:layout_marginLeft="12dp"
         android:layout_marginBottom="36dp"
         android:ems="10"
+        android:hint="@string/Algostates"
         android:inputType="number"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="@+id/sensorNOK"
         app:layout_constraintStart_toEndOf="@+id/sensorOK"
         app:layout_constraintTop_toTopOf="@+id/sensorOK"
@@ -342,10 +424,10 @@
         android:layout_height="46dp"
         app:layout_constraintBottom_toBottomOf="@+id/speedReset"
         app:layout_constraintEnd_toEndOf="@+id/gearR"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/gearR"
         app:layout_constraintTop_toBottomOf="@+id/gearR"
-        app:layout_constraintVertical_bias="0.325"
+        app:layout_constraintVertical_bias="0.348"
         app:srcCompat="@drawable/truck_head" />
 
     <ImageView

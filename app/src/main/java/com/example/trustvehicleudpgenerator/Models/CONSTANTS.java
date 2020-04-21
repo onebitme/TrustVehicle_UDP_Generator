@@ -9,7 +9,7 @@ public class CONSTANTS {
     //public static int sendPort =51425;
     //public static String sendAddress="192.168.1.37"; //MacBook Ethernet
     public static int sendPort = 51427;
-    public static String sendAddress="192.168.1.40";
+    public static String sendAddress="192.168.1.38";
     public static int incomingMessageSize=856;
     public static int outgoingMessageSize=856;
     public static int startOfPathValues=14;

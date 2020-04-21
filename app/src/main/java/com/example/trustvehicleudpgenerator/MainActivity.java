@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TTStatesGenerator ttStatesGenerator = new TTStatesGenerator();
     final float[][] ttStates = ttStatesGenerator.makeStates();
 
+    int VehicleSpeed;
+
 
     Random r1,r2,r3,r4,r5;
 
@@ -232,6 +234,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         truckYint = Math.round(ttStates[1][statesIndex]*10f+65536f);
                         truckHeadingint = Math.round(ttStates[2][statesIndex]*1000f+65536f);
                         hitchAngleint = Math.round(ttStates[3][statesIndex]*10f+65536f);
+                        VehicleSpeed = Math.round(r5.nextFloat()*(9f));
+                        mainActivityViewModel.changeOutGoingMessage(12,VehicleSpeed);
 
                         mainActivityViewModel.changeOutGoingMessage(5,truckXint);
                         mainActivityViewModel.changeOutGoingMessage(6,truckYint);

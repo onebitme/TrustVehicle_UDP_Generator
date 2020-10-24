@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             truckXint = Math.round(truckX*10f+65536f);
             truckYint = Math.round(truckY*10f+65536f);
-            truckHeadingint = Math.round(truckHeading*1000f+65536f);
+            truckHeadingint = Math.round(truckHeading*10f+65536f);
             hitchAngleint = Math.round(hitchAngle*10f+65536f);
 
             mainActivityViewModel.changeOutGoingMessage(5,truckXint);
@@ -230,9 +230,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 handler1.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        truckXint = Math.round(ttStates[0][statesIndex]*10f+65536f);
-                        truckYint = Math.round(ttStates[1][statesIndex]*10f+65536f);
-                        truckHeadingint = Math.round(ttStates[2][statesIndex]*1000f+65536f);
+                        truckXint = Math.round(ttStates[0][statesIndex]*10f+65536f-30f);
+                        truckYint = Math.round(ttStates[1][statesIndex]*10f+65536f+20f);
+                        truckHeadingint = Math.round(ttStates[2][statesIndex]*10f+65536f);
                         hitchAngleint = Math.round(ttStates[3][statesIndex]*10f+65536f);
                         VehicleSpeed = Math.round(r5.nextFloat()*(9f));
                         mainActivityViewModel.changeOutGoingMessage(12,VehicleSpeed);

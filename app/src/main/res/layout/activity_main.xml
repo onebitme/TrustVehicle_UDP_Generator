@@ -74,14 +74,14 @@
         android:id="@+id/tvPlayStates"
         android:layout_width="97dp"
         android:layout_height="36dp"
+        android:layout_marginBottom="184dp"
         android:text="TV-Play"
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="@+id/textView8"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.346"
         app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/tvGoal"
-        app:layout_constraintVertical_bias="0.759" />
+        app:layout_constraintTop_toBottomOf="@+id/gearR" />
 
     <TextView
         android:id="@+id/objectSetter"
